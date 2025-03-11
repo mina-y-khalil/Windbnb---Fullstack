@@ -1,0 +1,32 @@
+/* Profile Button */
+.profile-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Profile Icon */
+.profile-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Dropdown Menu */
+.profile-dropdown {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    list-style: none;
+}
+
+/* Logout Button */
+.profile-dropdown button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
