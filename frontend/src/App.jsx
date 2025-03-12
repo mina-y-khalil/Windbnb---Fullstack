@@ -3,10 +3,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormModal/LoginFormModal";
-import SignupFormPage from "./components/SignupFormModal/SignupFormModal";
 import Navigation from "./components/Navigation/Navigation";
 import * as sessionActions from "./store/session";
+import { ModalProvider, Modal } from "./context/Modal";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -29,16 +28,17 @@ function Layout() {
 const router = createBrowserRouter([
   {
     element: <Layout />,
-    children: [
-      { index: true, element: <h1>Welcome!</h1> },
-      { path: "/login", element: <LoginFormPage /> },
-      { path: "/signup", element: <SignupFormPage /> },
-    ],
+    children: [{ index: true, element: <h1>Welcome!</h1> }],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ModalProvider>
+      <RouterProvider router={router} />
+      <Modal /> { }
+    </ModalProvider>
+  );
 }
 
 export default App;

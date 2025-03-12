@@ -1,3 +1,4 @@
+// frontend/src/context/Modal.jsx
 import { useRef, useState, useContext, createContext } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
@@ -26,12 +27,10 @@ export function ModalProvider({ children }) {
     };
 
     return (
-        <>
-            <ModalContext.Provider value={contextValue}>
-                {children}
-            </ModalContext.Provider>
+        <ModalContext.Provider value={contextValue}>
+            {children}
             <div ref={modalRef} />
-        </>
+        </ModalContext.Provider>
     );
 }
 
@@ -48,7 +47,4 @@ export function Modal() {
     );
 }
 
-
-export function useModal() {
-    return useContext(ModalContext);
-}
+export const useModal = () => useContext(ModalContext);
