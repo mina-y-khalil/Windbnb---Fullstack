@@ -5,12 +5,12 @@ function OpenModalButton({ modalComponent, buttonText, onButtonClick }) {
     const { setModalContent } = useModal();
 
     const onClick = () => {
-        console.log("Modal Button Clicked:", buttonText); // Debugging log
-        setModalContent(modalComponent); // Open modal
-        if (typeof onButtonClick === "function") onButtonClick(); // Close dropdown if applicable
+        if (typeof onButtonClick === "function") onButtonClick();
+        setTimeout(() => setModalContent(modalComponent), 0);
     };
 
     return <button onClick={onClick}>{buttonText}</button>;
 }
+
 
 export default OpenModalButton;

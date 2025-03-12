@@ -21,9 +21,11 @@ function Layout() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded ? <Outlet /> : <h1>Loading...</h1>}
+      <Modal /> { }
     </>
   );
 }
+
 
 const router = createBrowserRouter([
   {
