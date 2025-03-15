@@ -4,6 +4,11 @@ const apiRouter = require("./api");
 
 router.use("/api", apiRouter);
 
+router.get("/api/csrf/restore", (req, res) => {
+  res.cookie("XSRF-TOKEN", req.csrfToken());
+  return res.json({});
+});
+
 // Serve React build files in production
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
