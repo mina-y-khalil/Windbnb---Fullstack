@@ -81,7 +81,7 @@ function CreateSpot() {
   };
   return (
     <div className="create-spot-container">
-      <h1>Create a New Spot</h1>
+      <h1>Create a new spot</h1>
       <form onSubmit={handleSubmit} className="create-spot-form">
         <div className="form-section">
           <h3>Wheres your place located?</h3>
