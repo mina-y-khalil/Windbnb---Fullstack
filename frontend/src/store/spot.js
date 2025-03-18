@@ -175,7 +175,7 @@ const spotReducer = (state = initialState, action) => {
       action.payload.forEach((spot) => {
         spots[spot.id] = {
           ...spot,
-          previewImage: spot.SpotImages?.[0]?.url || "/placeholder.jpg",
+          previewImage: spot.SpotImages || "/placeholder.jpg",
         };
       });
 

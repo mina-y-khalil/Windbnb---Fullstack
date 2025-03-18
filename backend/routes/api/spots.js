@@ -141,7 +141,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
           required: false,
         },
       ],
-      group: ["Spot.id"],
+      group: ["Spot.id", "SpotImages.id"],
     });
 
     const formattedSpots = spots.map((spot) => ({
@@ -218,8 +218,8 @@ router.get("/", validateQueryParams, async (req, res, next) => {
     let { minLat, maxLat, minLng, maxLng, minPrice, maxPrice, page, size } =
       req.query;
 
-    page = parseInt(page);
-    size = parseInt(size);
+    page = parseInt(page) || 1; //Ensure pagination defaults
+    size = parseInt(size) || 20;
 
     // Default values for pagination
     if (Number.isNaN(page) || page < 1) page = 1;
@@ -260,11 +260,16 @@ router.get("/", validateQueryParams, async (req, res, next) => {
         },
       ],
 
-      group: ["Spot.id"],
+      group: ["Spot.id", "SpotImages.id"],
       limit: size,
       offset: (page - 1) * size,
       subQuery: false,
     });
+
+    const formattedSpots = spots.map((spot) => ({
+      ...spot.toJSON(),
+      previewImage: spot.SpotImages.length > 0 ? spot.SpotImages[0].url : null, //Ensure preview image is available
+    }));
 
     res.status(200).json({ Spots: spots, page, size });
   } catch (error) {
