@@ -10,16 +10,16 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete(
-      //Delete existing users before seeding
-      "Users",
-      {
-        username: {
-          [Sequelize.Op.in]: ["JohnSmith", "secre", "FakeUser2", "DemoUser"],
-        },
-      },
-      {}
-    );
+    // await queryInterface.bulkDelete(
+    //   //Delete existing users before seeding
+    //   "Users",
+    //   {
+    //     username: {
+    //       [Sequelize.Op.in]: ["JohnSmith", "secre", "FakeUser2", "DemoUser"],
+    //     },
+    //   },
+    //   {}
+    // );
     await User.bulkCreate(
       [
         {

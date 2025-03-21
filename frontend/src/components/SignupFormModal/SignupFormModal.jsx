@@ -19,11 +19,11 @@ function SignupFormModal() {
   useEffect(() => {
     const isFormValid =
       email.trim() &&
-      username.length >= 4 &&
+      username.trim().length >= 4 &&
       firstName.trim() &&
       lastName.trim() &&
-      password.length >= 6 &&
-      confirmPassword === password;
+      password.trim().length >= 6 &&
+      confirmPassword.trim() === password.trim();
 
     setIsSubmitDisabled(!isFormValid);
   }, [email, username, firstName, lastName, password, confirmPassword]);
@@ -44,6 +44,14 @@ function SignupFormModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const trimmedEmail = email.trim(); //Trim before submission
+    const trimmedUsername = username.trim();
+    const trimmedFirstName = firstName.trim();
+    const trimmedLastName = lastName.trim();
+    const trimmedPassword = password.trim();
+    const trimmedConfirmPassword = confirmPassword.trim();
+
+
     if (password !== confirmPassword) {
       setErrors({
         confirmPassword: "Confirm Password field must match the Password field",
@@ -54,11 +62,12 @@ function SignupFormModal() {
     try {
       const newUser = await dispatch(
         sessionActions.signup({
-          email,
-          username,
-          firstName,
-          lastName,
-          password,
+          trimmedEmail,
+          trimmedUsername,
+          trimmedFirstName,
+          trimmedLastName,
+          trimmedPassword,
+          trimmedConfirmPassword
         })
       );
       if (newUser) {
