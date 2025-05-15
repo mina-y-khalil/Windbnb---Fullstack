@@ -108,7 +108,7 @@ function SpotDetail() {
       {/* Reviews Section */}
       <div className="reviews-section">
         <h3>
-          ⭐️ {averageRating} · {reviewCount} Review{reviewCount > 1 ? "s" : ""}
+          ⭐️ {averageRating} · {reviewCount} Review{reviewCount !== 1 ? "s" : ""}
         </h3>
 
         {/* 👉 Only show review button if user can post */}
