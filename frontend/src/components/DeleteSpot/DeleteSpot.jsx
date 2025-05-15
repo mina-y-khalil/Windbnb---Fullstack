@@ -3,6 +3,7 @@ import { deleteSpot } from '../../store/spot';
 import { useModal } from '../../context/Modal';
 import './DeleteSpot.css'
 
+
 function DeleteSpot({ spotId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -11,7 +12,7 @@ function DeleteSpot({ spotId }) {
     try {
       await dispatch(deleteSpot(spotId));
       closeModal();
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.error('Failed to delete the spot:', err);
     }
