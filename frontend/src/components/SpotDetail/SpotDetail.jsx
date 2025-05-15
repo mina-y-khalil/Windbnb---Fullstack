@@ -156,6 +156,8 @@ function SpotDetail() {
                 </div>
               ))}
           </div>
+        ) : sessionUser && sessionUser.id !== spot.ownerId ? (
+          <p className="no-reviews-text">Be the first to post a review!</p>
         ) : (
           <p className="no-reviews-text">No reviews yet.</p>
         )}
