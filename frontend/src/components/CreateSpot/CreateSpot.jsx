@@ -86,7 +86,7 @@ function CreateSpot() {
       <h1>Create a New Spot</h1>
       <form onSubmit={handleSubmit} className="create-spot-form">
         <div className="form-section">
-          <h3>Wheres your place located?</h3>
+          <h3>Where&apos;s your place located?</h3>
           <p style={{ color: 'black' }}>Guests will only get your exact address once they booked a reservation.</p>
           <label>Country
             <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" />
@@ -127,7 +127,7 @@ function CreateSpot() {
 
         <div className="form-section">
           <h3>Create a title for your spot</h3>
-          <p style={{ color: 'black' }}>Catch guests attention with a spot title that highlights what makes your place special.</p>
+          <p style={{ color: 'black' }}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
           <input
             type="text"
             value={name}
