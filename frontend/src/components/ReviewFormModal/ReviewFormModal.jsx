@@ -17,10 +17,12 @@ function ReviewForm({ spotId, onAddReview }) {
     const reviewData = { review: reviewText, stars };
     try {
       const newReview = await dispatch(addReview(spotId, reviewData));
-      onAddReview(newReview);
-      setReviewText('');
-      setStars(0);
-      closeModal();
+      if (newReview) {
+        onAddReview?.(newReview);
+        setReviewText('');
+        setStars(0);
+        closeModal();
+      }
     } catch (error) {
       console.error("Error submitting review:", error);
     }
