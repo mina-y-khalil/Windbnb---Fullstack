@@ -36,7 +36,7 @@ const SpotList = () => {
     <div className="spot-list">
       {spots.length > 0 ? (
         spots.map((spot) => (
-          <Link to={`/spots/${spot.id}`} key={spot.id} className="spot-tile">
+          <Link to={`/spots/${spot.id}`} key={spot.id} className="spot-tile" title={spot.name}>
             <img
               src={spot.previewImage || '/default-image.png'}
               alt={spot.name}
