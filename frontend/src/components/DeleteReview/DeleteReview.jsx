@@ -10,8 +10,8 @@ const DeleteReview = ({ spotId, reviewId, onReviewDeleted }) => {
   const handleDelete = async () => {
     try {
       await dispatch(deleteReview(spotId, reviewId));
-      onReviewDeleted(reviewId);
-      closeModal();
+      onReviewDeleted?.(reviewId);
+      setTimeout(() => closeModal(), 0);
     } catch (error) {
       console.error("Error deleting review:", error);
     }

@@ -21,7 +21,7 @@ function ReviewForm({ spotId, onAddReview }) {
         onAddReview?.(newReview);
         setReviewText('');
         setStars(0);
-        closeModal();
+        setTimeout(() => closeModal(), 0);
       }
     } catch (error) {
       console.error("Error submitting review:", error);
