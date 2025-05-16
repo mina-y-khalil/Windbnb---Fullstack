@@ -177,9 +177,9 @@ const spotReducer = (state = initialState, action) => {
           ...spot,
           previewImage: spot.SpotImages?.[0]?.url || "/placeholder.jpg",
           avgStarRating:
-            spot.avgRating === null || spot.avgRating === undefined
+            spot.avgStarRating === null || spot.avgStarRating === undefined
               ? "New"
-              : spot.avgRating,
+              : spot.avgStarRating,
           numReviews: spot.numReviews || 0,
         };
       });

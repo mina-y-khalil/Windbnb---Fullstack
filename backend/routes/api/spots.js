@@ -133,7 +133,10 @@ router.get("/current", requireAuth, async (req, res, next) => {
       where: { ownerId: userId },
       attributes: {
         include: [
-          [Sequelize.fn("AVG", Sequelize.col("Reviews.stars")), "avgRating"],
+          [
+            Sequelize.fn("AVG", Sequelize.col("Reviews.stars")),
+            "avgStarRating",
+          ],
           [Sequelize.literal("'image url'"), "previewImage"],
         ],
       },
@@ -179,7 +182,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
           : "/default-image.png", //Ensure preview image is available
     }));
 
-    return res.status(200).json({ Spots: spots });
+    return res.status(200).json({ Spots: formattedSpots });
   } catch (error) {
     next(error);
   }
@@ -273,7 +276,10 @@ router.get("/", validateQueryParams, async (req, res, next) => {
       where: query,
       attributes: {
         include: [
-          [Sequelize.fn("AVG", Sequelize.col("Reviews.stars")), "avgRating"],
+          [
+            Sequelize.fn("AVG", Sequelize.col("Reviews.stars")),
+            "avgStarRating",
+          ],
           [Sequelize.fn("COUNT", Sequelize.col("Reviews.id")), "numReviews"],
         ],
       },
