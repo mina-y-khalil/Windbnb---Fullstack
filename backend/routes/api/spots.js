@@ -144,6 +144,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
         {
           model: Review,
           attributes: [],
+          duplicating: false,
         },
         {
           model: SpotImage, //Include SpotImage to fetch the preview image
@@ -168,8 +169,8 @@ router.get("/current", requireAuth, async (req, res, next) => {
         "Spot.updatedAt",
         "SpotImages.id",
       ],
-      limit: size,
-      offset: (page - 1) * size,
+      limit: 20,
+      offset: 0,
       subQuery: false,
       distinct: true,
     });
@@ -294,12 +295,13 @@ router.get("/", validateQueryParams, async (req, res, next) => {
           model: Review,
           attributes: [],
           required: false,
+          duplicating: false,
         },
       ],
 
       group: ["Spot.id", "SpotImages.id"],
-      limit: size,
-      offset: (page - 1) * size,
+      limit: 20,
+      offset: 0,
       subQuery: false,
     });
 
