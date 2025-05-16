@@ -176,7 +176,10 @@ const spotReducer = (state = initialState, action) => {
         spots[spot.id] = {
           ...spot,
           previewImage: spot.SpotImages?.[0]?.url || "/placeholder.jpg",
-          avgStarRating: spot.avgRating || "New",
+          avgStarRating:
+            spot.avgRating === null || spot.avgRating === undefined
+              ? "New"
+              : spot.avgRating,
           numReviews: spot.numReviews || 0,
         };
       });
