@@ -28,6 +28,16 @@ function SignupFormModal() {
     setIsSubmitDisabled(!isFormValid);
   }, [email, username, firstName, lastName, password, confirmPassword]);
 
+  useEffect(() => {
+    const updatedErrors = { ...errors };
+    if (confirmPassword && confirmPassword !== password) {
+      updatedErrors.confirmPassword = "Passwords do not match";
+    } else {
+      delete updatedErrors.confirmPassword;
+    }
+    setErrors(updatedErrors);
+  }, [confirmPassword, password]);
+
 
   useEffect(() => {
     return () => {
@@ -135,9 +145,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button
           type="submit"
           className={`signup-button ${isSubmitDisabled ? "disabled" : ""}`}
