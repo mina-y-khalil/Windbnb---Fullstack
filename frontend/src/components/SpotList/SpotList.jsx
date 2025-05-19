@@ -48,8 +48,8 @@ const SpotList = () => {
                 <div className="spot-rating">
                   <span className="star-icon">⭐️</span>
                   {typeof spot.avgStarRating === "number"
-                    ? spot.avgStarRating.toFixed(1)
-                    : "New"} {/* */}
+                    ? Number(spot.avgStarRating).toFixed(1)
+                    : "New"}
                   {spot.numReviews > 0 ? `· ${spot.numReviews} Review${spot.numReviews > 1 ? "s" : ""}` : ""}
                 </div>
               </div>
