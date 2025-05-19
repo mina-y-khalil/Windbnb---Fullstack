@@ -47,10 +47,10 @@ const SpotList = () => {
                 <h2 className="spot-name" title={spot.name}>{spot.name}</h2>
                 <div className="spot-rating">
                   <span className="star-icon">⭐️</span>
-                  {typeof spot.avgStarRating === "number"
-                    ? Number(spot.avgStarRating).toFixed(1)
+                  {spot.numReviews > 0 && typeof spot.avgStarRating === "number"
+                    ? `${Number(spot.avgStarRating).toFixed(1)}`
                     : "New"}
-                  {spot.numReviews > 0 ? `· ${spot.numReviews} Review${spot.numReviews > 1 ? "s" : ""}` : ""}
+                  {spot.numReviews > 0 ? ` · ${spot.numReviews} Review${spot.numReviews > 1 ? "s" : ""}` : ""}
                 </div>
               </div>
               <p className="spot-location">
