@@ -35,36 +35,38 @@ const SpotList = () => {
   return (
     <div className="spot-list">
       {spots.length > 0 ? (
-        spots.map((spot) => (
-          <Link to={`/spots/${spot.id}`} key={spot.id} className="spot-tile" title={spot.name}>
-            <img
-              src={spot.previewImage || '/default-image.png'}
-              alt={spot.name}
-              className="spot-image"
-            />
-            <div className="spot-info">
-              <div className="spot-header">
-                <h2 className="spot-name" title={spot.name}>{spot.name}</h2>
-                <div className="spot-rating">
-                  <span className="star-icon">⭐️</span>
-                  {spot.numReviews > 0 && typeof spot.avgStarRating === "number"
-                    ? `${Number(spot.avgStarRating).toFixed(1)}`
-                    : "New"}
-                  {spot.numReviews > 0 ? ` · ${spot.numReviews} Review${spot.numReviews > 1 ? "s" : ""}` : ""}
+        spots.map((spot) => {
+          const avgRating = Number(spot.avgStarRating);
+          return (
+            <Link to={`/spots/${spot.id}`} key={spot.id} className="spot-tile" title={spot.name}>
+              <img
+                src={spot.previewImage || '/default-image.png'}
+                alt={spot.name}
+                className="spot-image"
+              />
+              <div className="spot-info">
+                <div className="spot-header">
+                  <h2 className="spot-name" title={spot.name}>{spot.name}</h2>
+                  <div className="spot-rating">
+                    <span className="star-icon">⭐️</span>
+                    {Number.isFinite(avgRating)
+                      ? avgRating.toFixed(1)
+                      : "New"}
+                    {spot.numReviews > 0 ? ` · ${spot.numReviews} Review${spot.numReviews > 1 ? "s" : ""}` : ""}
+                  </div>
                 </div>
+                <p className="spot-location">
+                  {spot.city}, {spot.state}
+                </p>
+                <p className="spot-price">${spot.price} / night</p>
               </div>
-              <p className="spot-location">
-                {spot.city}, {spot.state}
-              </p>
-              <p className="spot-price">${spot.price} / night</p>
-            </div>
-          </Link>
-        ))
+            </Link>
+          );
+        })
       ) : (
         <p className='no-spots-message'>No spots available</p>
       )}
     </div>
   );
 };
-
 export default SpotList;
