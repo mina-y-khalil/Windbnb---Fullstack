@@ -9,8 +9,6 @@ const cors = require("cors");
 const csurf = require("csurf");
 const helmet = require("helmet");
 
-const { generalLimiter, authLimiter } = require("./utils/rateLimit");
-
 // UTILITY IMPORTS
 const cookieParser = require("cookie-parser");
 const { environment } = require("./config");
@@ -23,10 +21,6 @@ const app = express();
 
 // MIDDLEWARES
 app.use(morgan("dev"));
-
-// RATE LIMITS (bots, scrapers and password guessing)
-app.use(generalLimiter);
-app.post(["/api/session", "/api/session/demo", "/api/users"], authLimiter);
 app.use(cookieParser());
 app.use(express.json());
 
