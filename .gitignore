@@ -1,0 +1,6 @@
+# Dependencies are installed fresh on every Render build
+node_modules/
+
+# Local secrets and databases
+.env
+*.db
